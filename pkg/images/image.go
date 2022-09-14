@@ -30,7 +30,7 @@ func (I *Image) Marshal() (string, error) {
 
 func ParseImage(image string) (*Image, error) {
 	img := &Image{}
-	r := regexp.MustCompile(`(?P<Registry>[a-z0-9\-.]+\.[a-z0-9\-]+:?[0-9]*)?/?((?P<Name>[a-zA-Z0-9-_]+?)|(?P<UserName>[a-zA-Z0-9-_]+?)/(?P<ImageName>[a-zA-Z-_]+?))(:(?P<Tag>[a-zA-Z0-9-_\\.]+?)|)$`)
+	r := regexp.MustCompile(`(?P<Registry>[a-z0-9\-.]+\.[a-z0-9\-]+:?[0-9]*)?/?((?P<Name>[a-zA-Z0-9-_]+?)|(?P<UserName>[a-zA-Z0-9-_]+?)/(?P<ImageName>[a-zA-Z0-9-_/]+?))(:(?P<Tag>[a-zA-Z0-9-_\\.]+?)|)$`)
 	if r.MatchString(image) {
 		matches := r.FindStringSubmatch(image)
 		if matches[1] != "" {
